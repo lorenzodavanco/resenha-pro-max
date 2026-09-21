@@ -1,10 +1,11 @@
-package Model;
+package br.com.uel.resenhapromax.Model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Entity
 @Table(name="Resenhas")

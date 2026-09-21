@@ -1,17 +1,27 @@
-package Service;
+package br.com.uel.resenhapromax.Service;
 
-import Model.Resenha;
-import Repository.resenhaRepository;
+import br.com.uel.resenhapromax.Model.Resenha;
+import br.com.uel.resenhapromax.Repository.resenhaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class resenhaService {
+    private final resenhaRepository resenhaRepository;
+
     @Autowired
-    private resenhaRepository resenhaRepository;
+    public resenhaService(resenhaRepository resenhaRepository) {
+        this.resenhaRepository = resenhaRepository;
+    }
 
     public List<Resenha> listarResenhas(){
         return resenhaRepository.findAll();
+    }
+
+    public Resenha buscarResenha(Long id){
+        return resenhaRepository.findById(id).orElse(null);
     }
 
     public Resenha cadastrarResenha(Resenha resenha){
