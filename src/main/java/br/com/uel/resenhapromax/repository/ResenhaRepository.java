@@ -1,7 +1,7 @@
-package br.com.uel.resenhapromax.Repository;
-import br.com.uel.resenhapromax.Model.Resenha;
+package br.com.uel.resenhapromax.repository;
+
+import br.com.uel.resenhapromax.model.Resenha;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface resenhaRepository
-    extends JpaRepository<Resenha,Long> {
+public interface ResenhaRepository extends JpaRepository<Resenha, Long> {
 }
