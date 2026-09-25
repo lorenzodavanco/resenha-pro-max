@@ -1,0 +1,9 @@
+spring.application.name=resenhapromax
+
+# copie este arquivo para application.properties e coloque seus dados do MySQL
+spring.datasource.url=jdbc:mysql://localhost:3306/resenhapromax?createDatabaseIfNotExist=true
+spring.datasource.username=root
+spring.datasource.password=
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
