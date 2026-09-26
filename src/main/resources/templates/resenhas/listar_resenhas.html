@@ -13,6 +13,8 @@
     </nav>
 
     <main class="container">
+        <div class="alert alert-success" th:if="${sucesso}" th:text="${sucesso}"></div>
+
         <div class="card shadow-sm">
             <div class="card-header d-flex justify-content-between align-items-center bg-white py-3">
                 <h5 class="m-0">Histórico de resenhas</h5>
@@ -67,7 +69,8 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Lugar *</label>
-                        <input class="form-control" th:field="*{lugar}">
+                        <input class="form-control" th:field="*{lugar}" th:errorclass="is-invalid">
+                        <div class="invalid-feedback" th:errors="*{lugar}"></div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Endereço</label>
@@ -75,11 +78,13 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Data e horário *</label>
-                        <input class="form-control" type="datetime-local" th:field="*{dataHora}">
+                        <input class="form-control" type="datetime-local" th:field="*{dataHora}" th:errorclass="is-invalid">
+                        <div class="invalid-feedback" th:errors="*{dataHora}"></div>
                     </div>
                     <div>
                         <label class="form-label">Presentes *</label>
-                        <input class="form-control" th:field="*{presentes}" placeholder="Ex: Ana, João, Pedro">
+                        <input class="form-control" th:field="*{presentes}" th:errorclass="is-invalid" placeholder="Ex: Ana, João, Pedro">
+                        <div class="invalid-feedback" th:errors="*{presentes}"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
