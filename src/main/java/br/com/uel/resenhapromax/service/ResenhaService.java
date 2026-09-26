@@ -16,14 +16,10 @@ public class ResenhaService {
         this.resenhaRepository = resenhaRepository;
     }
 
-    // lista tudo ordenado pelo campo escolhido (asc ou desc)
-    public List<Resenha> listarResenhas(String campo, String direcao) {
-        return resenhaRepository.findAll(criarOrdenacao(campo, direcao));
-    }
-
-    // busca pelo lugar, mantendo a ordenacao
-    public List<Resenha> pesquisarResenhas(String nome, String campo, String direcao) {
-        return resenhaRepository.findByLugarContainingIgnoreCase(nome, criarOrdenacao(campo, direcao));
+    // lista com os filtros e ordenada pelo campo escolhido (asc ou desc)
+    public List<Resenha> listarResenhas(String lugar, String pessoa, String campo, String direcao) {
+        return resenhaRepository.findByLugarContainingIgnoreCaseAndPresentesContainingIgnoreCase(
+                lugar, pessoa, criarOrdenacao(campo, direcao));
     }
 
     public Resenha buscarResenha(Long id) {
