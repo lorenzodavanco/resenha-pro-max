@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +39,14 @@ public class ResenhaController {
     public String novaResenha(Model model) {
         carregarLista(model, "", "", "dataHora", "desc");
         model.addAttribute("resenha", new Resenha());
+        return "resenhas/listar_resenhas";
+    }
+
+    // mesma tela, com o modal preenchido pra editar
+    @GetMapping("/{id}/editar")
+    public String editarResenha(@PathVariable Long id, Model model) {
+        carregarLista(model, "", "", "dataHora", "desc");
+        model.addAttribute("resenha", resenhaService.buscarResenha(id));
         return "resenhas/listar_resenhas";
     }
 

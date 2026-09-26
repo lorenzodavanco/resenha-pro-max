@@ -42,7 +42,7 @@
 
                 <table class="table table-hover align-middle m-0">
                     <thead class="table-light">
-                        <tr><th>Lugar</th><th>Endereço</th><th>Data</th><th>Presentes</th></tr>
+                        <tr><th>Lugar</th><th>Endereço</th><th>Data</th><th>Presentes</th><th class="text-end">Ações</th></tr>
                     </thead>
                     <tbody>
                         <!-- uma linha pra cada resenha -->
@@ -51,6 +51,9 @@
                             <td class="text-muted" th:text="${r.endereco}"></td>
                             <td th:text="${#temporals.format(r.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
                             <td th:text="${r.presentes}"></td>
+                            <td class="text-end">
+                                <a class="btn btn-sm btn-outline-primary" th:href="@{/resenhas/{id}/editar(id=${r.id})}">Editar</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -63,10 +66,12 @@
         <div class="modal-dialog modal-dialog-centered">
             <form class="modal-content" method="post" th:action="@{/resenhas/salvar}" th:object="${resenha}">
                 <div class="modal-header">
-                    <h5 class="modal-title">Nova resenha</h5>
+                    <h5 class="modal-title" th:text="${resenha.id == null ? 'Nova resenha' : 'Editar resenha'}"></h5>
                     <a class="btn-close" th:href="@{/resenhas}"></a>
                 </div>
                 <div class="modal-body">
+                    <!-- com id atualiza, sem id cadastra -->
+                    <input type="hidden" th:field="*{id}">
                     <div class="mb-3">
                         <label class="form-label">Lugar *</label>
                         <input class="form-control" th:field="*{lugar}" th:errorclass="is-invalid">
