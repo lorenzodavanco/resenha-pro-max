@@ -19,7 +19,7 @@ public class ResenhaController {
     // manda a lista pra view, com pesquisa e ordenacao opcionais
     @GetMapping
     public String listarResenhas(@RequestParam(required = false) String nome,
-                                 @RequestParam(defaultValue = "nome") String campo,
+                                 @RequestParam(defaultValue = "dataHora") String campo,
                                  @RequestParam(defaultValue = "asc") String direcao,
                                  Model model) {
         if (nome != null && !nome.isBlank()) {

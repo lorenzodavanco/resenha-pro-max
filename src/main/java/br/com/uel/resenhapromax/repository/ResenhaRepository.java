@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ResenhaRepository extends JpaRepository<Resenha, Long> {
-    // pesquisa por parte do nome, sem ligar pra maiuscula
-    List<Resenha> findByNomeContainingIgnoreCase(String nome, Sort sort);
+    // pesquisa por parte do lugar, sem ligar pra maiuscula
+    List<Resenha> findByLugarContainingIgnoreCase(String lugar, Sort sort);
 }

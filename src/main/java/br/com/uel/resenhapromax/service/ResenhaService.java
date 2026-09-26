@@ -21,9 +21,9 @@ public class ResenhaService {
         return resenhaRepository.findAll(criarOrdenacao(campo, direcao));
     }
 
-    // busca pelo nome, mantendo a ordenacao
+    // busca pelo lugar, mantendo a ordenacao
     public List<Resenha> pesquisarResenhas(String nome, String campo, String direcao) {
-        return resenhaRepository.findByNomeContainingIgnoreCase(nome, criarOrdenacao(campo, direcao));
+        return resenhaRepository.findByLugarContainingIgnoreCase(nome, criarOrdenacao(campo, direcao));
     }
 
     public Resenha buscarResenha(Long id) {
@@ -38,10 +38,10 @@ public class ResenhaService {
     // copia os dados novos pra resenha que ja existe
     public Resenha atualizarResenha(Long id, Resenha resenha) {
         Resenha resenhaAtualizar = buscarResenha(id);
-        resenhaAtualizar.setNome(resenha.getNome());
-        resenhaAtualizar.setDescricao(resenha.getDescricao());
-        resenhaAtualizar.setCategoria(resenha.getCategoria());
-        resenhaAtualizar.setNota(resenha.getNota());
+        resenhaAtualizar.setLugar(resenha.getLugar());
+        resenhaAtualizar.setEndereco(resenha.getEndereco());
+        resenhaAtualizar.setDataHora(resenha.getDataHora());
+        resenhaAtualizar.setPresentes(resenha.getPresentes());
         return resenhaRepository.save(resenhaAtualizar);
     }
 
@@ -52,10 +52,10 @@ public class ResenhaService {
         resenhaRepository.deleteById(id);
     }
 
-    // so deixa ordenar por esses campos, senao usa nome
+    // so deixa ordenar por esses campos, senao usa data
     private Sort criarOrdenacao(String campo, String direcao) {
-        if (!List.of("nome", "categoria", "nota").contains(campo)) {
-            campo = "nome";
+        if (!List.of("lugar", "dataHora").contains(campo)) {
+            campo = "dataHora";
         }
         if ("desc".equalsIgnoreCase(direcao)) {
             return Sort.by(campo).descending();
