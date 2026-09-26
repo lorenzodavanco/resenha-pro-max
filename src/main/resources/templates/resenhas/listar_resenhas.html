@@ -18,6 +18,25 @@
                 <h5 class="m-0">Histórico de resenhas</h5>
             </div>
             <div class="card-body">
+                <!-- pesquisa + ordenacao, mantem o que foi buscado -->
+                <form class="row g-2 mb-3" method="get" th:action="@{/resenhas}">
+                    <div class="col-md-3"><input class="form-control" name="lugar" th:value="${lugar}" placeholder="Pesquisar por lugar"></div>
+                    <div class="col-md-3"><input class="form-control" name="pessoa" th:value="${pessoa}" placeholder="Pesquisar por pessoa"></div>
+                    <div class="col-md-2">
+                        <select class="form-select" name="campo">
+                            <option value="dataHora" th:selected="${campo == 'dataHora'}">Data</option>
+                            <option value="lugar" th:selected="${campo == 'lugar'}">Lugar</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select" name="direcao">
+                            <option value="desc" th:selected="${direcao == 'desc'}">Decrescente</option>
+                            <option value="asc" th:selected="${direcao == 'asc'}">Crescente</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2"><button class="btn btn-outline-secondary w-100">Buscar</button></div>
+                </form>
+
                 <table class="table table-hover align-middle m-0">
                     <thead class="table-light">
                         <tr><th>Lugar</th><th>Endereço</th><th>Data</th><th>Presentes</th></tr>
