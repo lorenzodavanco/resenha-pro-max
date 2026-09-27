@@ -53,6 +53,10 @@
                             <td th:text="${r.presentes}"></td>
                             <td class="text-end">
                                 <a class="btn btn-sm btn-outline-primary" th:href="@{/resenhas/{id}/editar(id=${r.id})}">Editar</a>
+                                <!-- excluir precisa ser POST, por isso o form -->
+                                <form class="d-inline" method="post" th:action="@{/resenhas/{id}/excluir(id=${r.id})}">
+                                    <button class="btn btn-sm btn-outline-danger">Excluir</button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>

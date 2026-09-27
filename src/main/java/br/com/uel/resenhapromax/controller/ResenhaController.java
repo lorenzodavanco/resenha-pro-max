@@ -68,6 +68,13 @@ public class ResenhaController {
         return "redirect:/resenhas";
     }
 
+    @PostMapping("/{id}/excluir")
+    public String excluirResenha(@PathVariable Long id, RedirectAttributes attrs) {
+        resenhaService.excluirResenha(id);
+        attrs.addFlashAttribute("sucesso", "Resenha excluída com sucesso!");
+        return "redirect:/resenhas";
+    }
+
     private void carregarLista(Model model, String lugar, String pessoa, String campo, String direcao) {
         model.addAttribute("resenhas", resenhaService.listarResenhas(lugar, pessoa, campo, direcao));
         model.addAttribute("lugar", lugar);
