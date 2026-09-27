@@ -1,11 +1,13 @@
 package br.com.uel.resenhapromax.controller;
 
+import br.com.uel.resenhapromax.exception.ResenhaNaoEncontradaException;
 import br.com.uel.resenhapromax.model.Resenha;
 import br.com.uel.resenhapromax.service.ResenhaService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,6 +74,13 @@ public class ResenhaController {
     public String excluirResenha(@PathVariable Long id, RedirectAttributes attrs) {
         resenhaService.excluirResenha(id);
         attrs.addFlashAttribute("sucesso", "Resenha excluída com sucesso!");
+        return "redirect:/resenhas";
+    }
+
+    // id que nao existe volta pra lista com alert de erro
+    @ExceptionHandler(ResenhaNaoEncontradaException.class)
+    public String resenhaNaoEncontrada(ResenhaNaoEncontradaException e, RedirectAttributes attrs) {
+        attrs.addFlashAttribute("erro", e.getMessage());
         return "redirect:/resenhas";
     }
 
